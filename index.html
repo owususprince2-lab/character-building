@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Character Building — Level 1</title>
+  <style>
+    :root{--blue:#0b4f9c;--blue2:#0d6efd;--navy:#082c57;--light:#f4f8fc;--line:#dbe5ef;--text:#172b4d;--muted:#64748b;--white:#fff;--success:#138a4b;--danger:#c62828}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--text);background:var(--light)}
+    .top{background:linear-gradient(135deg,var(--navy),var(--blue));color:white;padding:18px 6%;display:flex;align-items:center;justify-content:space-between}
+    .brand{font-size:21px;font-weight:800}.brand small{display:block;font-size:11px;opacity:.8;margin-top:3px}
+    .hero{padding:60px 6%;background:white}.hero-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
+    h1{font-size:46px;line-height:1.08;margin:0 0 18px;color:var(--navy)}h2{color:var(--navy)}p{line-height:1.65}
+    .eyebrow{color:var(--blue2);font-weight:800;text-transform:uppercase;letter-spacing:1.5px;font-size:13px}
+    .hero-card,.card{background:white;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 8px 30px rgba(8,44,87,.06)}
+    .price{font-size:34px;font-weight:900;color:var(--blue);margin:10px 0}.muted{color:var(--muted)}
+    .btn{border:0;border-radius:10px;padding:13px 18px;font-weight:800;cursor:pointer;background:var(--blue);color:white}.btn:hover{filter:brightness(.94)}
+    .btn.secondary{background:white;color:var(--blue);border:1px solid #b9cce0}.btn.success{background:var(--success)}.btn.danger{background:var(--danger)}
+    .section{max-width:1200px;margin:35px auto;padding:0 20px}.center{text-align:center}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.module{padding:20px;border:1px solid var(--line);border-radius:14px;background:#fff}.num{font-size:12px;color:var(--blue2);font-weight:900}
+    .modal{position:fixed;inset:0;background:rgba(2,20,40,.62);display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.modal.open{display:flex}
+    .modalbox{background:white;border-radius:18px;max-width:620px;width:100%;max-height:92vh;overflow:auto;padding:28px}
+    label{font-size:13px;font-weight:800;display:block;margin:13px 0 6px}input,select,textarea{width:100%;padding:12px;border:1px solid #cbd7e3;border-radius:9px;font:inherit;background:#fff}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.notice{padding:13px;border-radius:10px;background:#edf6ff;border:1px solid #cfe4fa;margin:14px 0}.error{background:#fff0f0;border-color:#ffc9c9;color:var(--danger)}.success{background:#effaf4;border-color:#c8efd9;color:var(--success)}
+    .dash{display:none}.dashbar{background:var(--navy);color:white;padding:20px 6%;display:flex;justify-content:space-between;align-items:center}.dashbody{max-width:1200px;margin:25px auto;padding:0 20px}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stat{background:white;padding:20px;border:1px solid var(--line);border-radius:14px}.stat strong{font-size:27px;display:block;color:var(--blue)}
+    .footer{background:var(--navy);color:white;padding:30px 6%;margin-top:50px;text-align:center}
+    @media(max-width:800px){.hero-grid,.grid,.stats,.row{grid-template-columns:1fr}h1{font-size:36px}.hero{padding:40px 5%}}
+  </style>
+</head>
+<body>
+  <div id="public">
+    <header class="top">
+      <div class="brand">CHARACTER BUILDING <small>LEVEL 1 PERSONAL COMPETENCE CERTIFICATION</small></div>
+      <button class="btn secondary" onclick="openModal('loginModal')">Login</button>
+    </header>
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Structured Learning-by-Doing</div>
+          <h1>Build character. Strengthen discipline. Practice responsibility.</h1>
+          <p>A practical competence programme focused on character formation and behavioural discipline through projects, trackers, reflection and evidence.</p>
+          <button class="btn" onclick="openModal('registerModal')">Register for October–December</button>
+        </div>
+        <div class="hero-card">
+          <div class="eyebrow">Registration</div>
+          <div class="price">GHS 300</div>
+          <p class="muted">Registration secures your cohort slot. The registration amount is credited toward the GHS 1,500 programme tuition.</p>
+          <button class="btn success" onclick="openModal('registerModal')">Start Registration</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="center"><div class="eyebrow">Programme Structure</div><h2>12 Core Competence Modules</h2></div>
+      <div class="grid" id="moduleGrid"></div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <h2>Programme Fees</h2>
+        <p><strong>Registration:</strong> GHS 300</p>
+        <p><strong>Tuition:</strong> GHS 1,500 — the GHS 300 registration is credited toward tuition, leaving GHS 1,200.</p>
+        <p><strong>Other expenses:</strong> GHS 200 for materials, trackers pack, badge and certificate.</p>
+        <p><strong>Total programme cost:</strong> GHS 1,700.</p>
+      </div>
+    </section>
+
+    <footer class="footer">Character Building — Level 1 Personal Competence Certification</footer>
+  </div>
+
+  <div id="dashboard" class="dash">
+    <div class="dashbar"><strong>Character Building Student Portal</strong><button class="btn secondary" onclick="logout()">Logout</button></div>
+    <div class="dashbody">
+      <div id="dashContent"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="registerModal">
+    <div class="modalbox">
+      <h2>Student Registration</h2>
+      <p class="muted">Complete your details. Your account will be saved before payment.</p>
+      <div id="regMsg"></div>
+      <form id="registerForm">
+        <label>Full name *</label><input id="name" required>
+        <div class="row">
+          <div><label>Date of birth *</label><input id="dob" type="date" required></div>
+          <div><label>Profession / Status *</label>
+            <select id="profession" required>
+              <option value="">Select</option>
+              <option>Student</option><option>Engineer</option><option>Teacher</option><option>Lecturer</option>
+              <option>Administrator</option><option>Entrepreneur</option><option>Accountant</option><option>Lawyer</option>
+              <option>Doctor</option><option>Nurse</option><option>Technician</option><option>Manager</option>
+              <option>Public Servant</option><option>Researcher</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <label>Email *</label><input id="email" type="email" required>
+        <label>Phone number *</label><input id="phone" required placeholder="e.g. 0244000000">
+        <label>Term *</label>
+        <select id="term" required>
+          <option>October–December</option>
+          <option disabled>January–March — Coming Soon</option>
+          <option disabled>June–August — Coming Soon</option>
+        </select>
+        <div class="notice"><strong>Registration fee: GHS 300.</strong><br>Your future live Paystack payment page will open after registration.</div>
+        <button class="btn" id="regBtn" type="submit">Create My Account</button>
+        <button class="btn secondary" type="button" onclick="closeModal('registerModal')">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="paymentModal">
+    <div class="modalbox">
+      <h2>Complete Registration Payment</h2>
+      <div id="paymentMsg" class="notice"></div>
+      <p>Registration fee: <strong>GHS 300</strong></p>
+      <button class="btn success" id="payBtn" onclick="openPayment()">Pay GHS 300 with Paystack</button>
+      <p class="muted" style="font-size:12px">The payment button is configured with a placeholder until you replace the Paystack URL in Code.gs.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="loginModal">
+    <div class="modalbox">
+      <h2>Login</h2>
+      <div id="loginMsg"></div>
+      <label>Username</label><input id="loginUser">
+      <label>Password</label><input id="loginPass" type="password">
+      <br><br><button class="btn" onclick="doLogin()">Login</button>
+      <button class="btn secondary" onclick="closeModal('loginModal')">Cancel</button>
+    </div>
+  </div>
+
+<script>
+const MODULES = [
+'Self Awareness and Identity Clarity','Emotional Intelligence (EQ)','Ethical Reasoning and Values',
+'Goal Setting and Direction','Personal Productivity Systems','Foundational Financial Literacy',
+'Digital Responsibility','Resilience and Mental Stability','Civic Engagement and National Responsibility',
+'Interpersonal Leadership and Conflict Resolution','Radical Honesty and Accountability (Anti Corruption)',
+'Excellence, Order and Property Care'
+];
+
+let currentStudentId = null;
+let currentRegistration = null;
+const paymentUrl = <?!= JSON.stringify(paymentUrl) ?>;
+
+function renderModules(){
+  document.getElementById('moduleGrid').innerHTML = MODULES.map((m,i)=>
+    `<div class="module"><div class="num">MODULE ${String(i+1).padStart(2,'0')}</div><h3>${escapeHtml(m)}</h3><p class="muted">Activity-based learning, evidence and reflection.</p></div>`
+  ).join('');
+}
+renderModules();
+
+function openModal(id){document.getElementById(id).classList.add('open')}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+function msg(id,text,type='notice'){document.getElementById(id).innerHTML=`<div class="${type}">${escapeHtml(text)}</div>`}
+
+document.getElementById('registerForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const btn=document.getElementById('regBtn'); btn.disabled=true; btn.textContent='Creating account...';
+  msg('regMsg','Please wait...');
+  google.script.run.withSuccessHandler(function(r){
+    currentRegistration=r;
+    btn.disabled=false; btn.textContent='Create My Account';
+    closeModal('registerModal');
+    document.getElementById('paymentMsg').innerHTML =
+      `<div class="success">Account created successfully.<br><strong>Username:</strong> ${escapeHtml(r.username)}<br>${escapeHtml(r.message)}</div>`;
+    openModal('paymentModal');
+  }).withFailureHandler(function(err){
+    btn.disabled=false; btn.textContent='Create My Account';
+    msg('regMsg',err.message || 'Registration failed. Please try again.','error');
+  }).registerStudent({
+    name:document.getElementById('name').value,dob:document.getElementById('dob').value,
+    profession:document.getElementById('profession').value,email:document.getElementById('email').value,
+    phone:document.getElementById('phone').value,term:document.getElementById('term').value
+  });
+});
+
+function openPayment(){
+  if(!paymentUrl || paymentUrl.indexOf('PASTE_')===0){
+    msg('paymentMsg','Your Paystack link has not been added yet. In Code.gs replace PAYSTACK_PAYMENT_PAGE_URL with your LIVE Paystack Payment Page URL.','error');
+    return;
+  }
+  window.open(paymentUrl,'_blank','noopener');
+}
+
+function doLogin(){
+  msg('loginMsg','Signing in...');
+  google.script.run.withSuccessHandler(function(r){
+    closeModal('loginModal');
+    if(r.role==='student'){currentStudentId=r.studentId; showStudentDashboard();}
+    else showInstructor(r);
+  }).withFailureHandler(function(err){
+    msg('loginMsg',err.message || 'Login failed.','error');
+  }).login(document.getElementById('loginUser').value,document.getElementById('loginPass').value);
+}
+
+function showStudentDashboard(){
+  google.script.run.withSuccessHandler(function(data){
+    document.getElementById('public').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    const s=data.student;
+    document.getElementById('dashContent').innerHTML=`
+      <h1>Welcome, ${escapeHtml(s.name)}</h1>
+      <div class="stats">
+        <div class="stat"><span class="muted">Registration</span><strong>${s.paid?'Paid':'Pending'}</strong></div>
+        <div class="stat"><span class="muted">Modules</span><strong>${data.modules.length}</strong></div>
+        <div class="stat"><span class="muted">Cohort</span><strong>Oct–Dec</strong></div>
+      </div>
+      <br><div class="card"><h2>Your Modules</h2><div class="grid">${
+        data.modules.map((m,i)=>`<div class="module"><div class="num">MODULE ${String(i+1).padStart(2,'0')}</div><h3>${escapeHtml(m.title)}</h3><p>${escapeHtml(m.description||'Learning materials and activities will appear here.')}</p>${m.resourceUrl?`<a href="${escapeAttr(m.resourceUrl)}" target="_blank">Open resource</a>`:''}</div>`).join('')
+      }</div></div>
+      <br><div class="card"><h2>Announcements</h2>${
+        data.announcements.length?data.announcements.map(a=>`<div class="notice"><strong>${escapeHtml(a.title)}</strong><br>${escapeHtml(a.message)}</div>`).join(''):'<p class="muted">No announcements yet.</p>'
+      }</div>`;
+  }).withFailureHandler(err=>alert(err.message)).getStudentDashboard(currentStudentId);
+}
+
+function showInstructor(r){
+  document.getElementById('public').style.display='none'; document.getElementById('dashboard').style.display='block';
+  document.getElementById('dashContent').innerHTML=`
+    <h1>Instructor Dashboard</h1>
+    <p>Signed in as <strong>${escapeHtml(r.name)}</strong>.</p>
+    <div class="grid">
+      <div class="card"><h3>Post Announcement</h3><input id="annTitle" placeholder="Title"><br><br><textarea id="annMsg" placeholder="Message"></textarea><br><br><button class="btn" onclick="postAnnouncement()">Publish</button></div>
+      <div class="card"><h3>Create Assignment</h3><input id="asTitle" placeholder="Assignment title"><br><br><textarea id="asInstr" placeholder="Instructions"></textarea><br><br><button class="btn" onclick="createAssignment()">Create</button></div>
+      <div class="card"><h3>Course Content</h3><p class="muted">Module records are managed from the connected Google Sheet. Resources can be linked there.</p></div>
+    </div>`;
+}
+function postAnnouncement(){
+  google.script.run.withSuccessHandler(()=>alert('Announcement published.')).withFailureHandler(e=>alert(e.message))
+  .createAnnouncement(document.getElementById('annTitle').value,document.getElementById('annMsg').value);
+}
+function createAssignment(){
+  google.script.run.withSuccessHandler(()=>alert('Assignment created.')).withFailureHandler(e=>alert(e.message))
+  .createAssignment('',''+document.getElementById('asTitle').value,document.getElementById('asInstr').value,'');
+}
+function logout(){location.reload()}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+function escapeAttr(s){return escapeHtml(s)}
+</script>
+</body>
+</html>
