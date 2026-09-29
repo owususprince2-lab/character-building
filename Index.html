@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Character Building — Level 1</title>
+  <style>
+    :root{--blue:#0b4f9c;--blue2:#0d6efd;--navy:#082c57;--light:#f4f8fc;--line:#dbe5ef;--text:#172b4d;--muted:#64748b;--white:#fff;--success:#138a4b;--danger:#c62828}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--text);background:var(--light)}
+    button,a{font:inherit}.top{background:linear-gradient(135deg,var(--navy),var(--blue));color:white;padding:15px 5%;display:flex;align-items:center;justify-content:space-between;gap:20px;position:sticky;top:0;z-index:8}
+    .brand{font-size:19px;font-weight:800;white-space:nowrap}.brand small{display:block;font-size:10px;opacity:.8;margin-top:3px}.nav{display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.nav a{color:#fff;text-decoration:none;padding:9px 10px;border-radius:8px;font-weight:700;font-size:13px}.nav a:hover{background:rgba(255,255,255,.12)}
+    .hero{padding:70px 6%;background:white}.hero-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:center}
+    h1{font-size:46px;line-height:1.08;margin:0 0 18px;color:var(--navy)}h2{color:var(--navy)}h3{margin-bottom:8px}p{line-height:1.65}.eyebrow{color:var(--blue2);font-weight:800;text-transform:uppercase;letter-spacing:1.5px;font-size:13px}
+    .hero-card,.card{background:white;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 8px 30px rgba(8,44,87,.06)}.price{font-size:34px;font-weight:900;color:var(--blue);margin:10px 0}.muted{color:var(--muted)}
+    .btn{display:inline-block;border:0;border-radius:10px;padding:12px 17px;font-weight:800;cursor:pointer;background:var(--blue);color:white;text-decoration:none}.btn:hover{filter:brightness(.94)}.btn.secondary{background:white;color:var(--blue);border:1px solid #b9cce0}.btn.success{background:var(--success)}.btn.danger{background:var(--danger)}
+    .section{max-width:1200px;margin:45px auto;padding:0 20px}.center{text-align:center}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.module{padding:20px;border:1px solid var(--line);border-radius:14px;background:#fff}.num{font-size:12px;color:var(--blue2);font-weight:900}.module .btn{margin-top:8px;font-size:13px}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:20px}.list{padding-left:20px;line-height:2}.fee{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}
+    .modal{position:fixed;inset:0;background:rgba(2,20,40,.62);display:none;align-items:center;justify-content:center;padding:20px;z-index:20}.modal.open{display:flex}.modalbox{background:white;border-radius:18px;max-width:650px;width:100%;max-height:92vh;overflow:auto;padding:28px}.close{float:right;border:0;background:#eef3f8;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:20px}
+    label{font-size:13px;font-weight:800;display:block;margin:13px 0 6px}input,select,textarea{width:100%;padding:12px;border:1px solid #cbd7e3;border-radius:9px;font:inherit;background:#fff}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.notice{padding:13px;border-radius:10px;background:#edf6ff;border:1px solid #cfe4fa;margin:14px 0}.error{background:#fff0f0;border-color:#ffc9c9;color:var(--danger)}.success{background:#effaf4;border-color:#c8efd9;color:var(--success)}
+    .dash{display:none}.dashbar{background:var(--navy);color:white;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;gap:15px}.dashnav{display:flex;gap:7px;flex-wrap:wrap}.dashnav button{background:transparent;color:white;border:1px solid rgba(255,255,255,.3);padding:8px 12px;border-radius:8px;cursor:pointer}.dashnav button.active{background:white;color:var(--navy)}.dashbody{max-width:1200px;margin:25px auto;padding:0 20px}.tab{display:none}.tab.active{display:block}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.stat{background:white;padding:20px;border:1px solid var(--line);border-radius:14px}.stat strong{font-size:27px;display:block;color:var(--blue)}
+    .footer{background:var(--navy);color:white;padding:30px 6%;margin-top:50px;text-align:center}.footer a{color:white}.hidden{display:none!important}
+    @media(max-width:900px){.top{align-items:flex-start;flex-direction:column}.nav{justify-content:flex-start}.hero-grid,.grid,.stats,.row,.two{grid-template-columns:1fr}h1{font-size:36px}.hero{padding:45px 5%}}
+  </style>
+</head>
+<body>
+<div id="public">
+  <header class="top">
+    <a href="#home" class="brand" style="color:white;text-decoration:none">CHARACTER BUILDING<small>LEVEL 1 PERSONAL COMPETENCE CERTIFICATION</small></a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#modules">Modules</a><a href="#fees">Fees</a>
+      <button class="btn secondary" onclick="openModal('loginModal')">Login</button>
+      <button class="btn" onclick="openModal('registerModal')">Register</button>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Structured Learning-by-Doing</div>
+        <h1>Build character. Strengthen discipline. Practice responsibility.</h1>
+        <p>A practical competence programme focused on character formation and behavioural discipline through projects, trackers, reflection and evidence.</p>
+        <a class="btn" href="#modules">Explore the 12 Modules</a>
+        <button class="btn success" onclick="openModal('registerModal')">Register for October–December</button>
+      </div>
+      <div class="hero-card">
+        <div class="eyebrow">Registration</div><div class="price">GHS 300</div>
+        <p class="muted">Registration secures your cohort slot. The registration amount is credited toward the GHS 1,500 programme tuition.</p>
+        <button class="btn success" onclick="openModal('registerModal')">Start Registration</button>
+        <button class="btn secondary" onclick="openModal('loginModal')">Student Login</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="two">
+      <div class="card"><div class="eyebrow">About the Programme</div><h2>Character Formation & Behavioural Discipline</h2><p>The programme develops practical personal competence through structured learning, evidence, reflection, accountability and daily behavioural practice.</p><ul class="list"><li>4-week structured programme</li><li>12 core competence modules</li><li>Evidence-based activities and reflection</li><li>21-day Behaviour Log and weekly tracking</li></ul><button class="btn" onclick="openModal('programmeModal')">View Programme Details</button></div>
+      <div class="card"><div class="eyebrow">How It Works</div><h2>Simple three-step process</h2><div class="fee"><strong>01 — Register</strong><span>Submit your details</span></div><div class="fee"><strong>02 — Pay</strong><span>Pay GHS 300</span></div><div class="fee"><strong>03 — Learn</strong><span>Access your portal</span></div><br><button class="btn success" onclick="openModal('registerModal')">Get Started</button></div>
+    </div>
+  </section>
+
+  <section class="section" id="modules">
+    <div class="center"><div class="eyebrow">Programme Structure</div><h2>12 Core Competence Modules</h2><p class="muted">Select any module to view its focus.</p></div>
+    <div class="grid" id="moduleGrid"></div>
+  </section>
+
+  <section class="section" id="fees">
+    <div class="card"><div class="eyebrow">Programme Fees</div><h2>Fees & Registration</h2>
+      <div class="fee"><strong>Registration</strong><span>GHS 300</span></div><div class="fee"><strong>Tuition</strong><span>GHS 1,500</span></div><div class="fee"><strong>Other expenses</strong><span>GHS 200</span></div><div class="fee"><strong>Total programme cost</strong><strong>GHS 1,700</strong></div>
+      <p class="muted">The GHS 300 registration payment is credited toward the GHS 1,500 tuition, leaving GHS 1,200 tuition balance.</p><button class="btn success" onclick="openModal('registerModal')">Register Now</button>
+    </div>
+  </section>
+  <footer class="footer">Character Building — Level 1 Personal Competence Certification<br><small>Character formation • Behavioural discipline • Personal competence</small></footer>
+</div>
+
+<div id="dashboard" class="dash">
+  <div class="dashbar"><strong>Character Building Student Portal</strong><div class="dashnav"><button id="tabHomeBtn" class="active" onclick="switchTab('portalHome',this)">Dashboard</button><button onclick="switchTab('portalModules',this)">Modules</button><button onclick="switchTab('portalAssignments',this)">Assignments</button><button onclick="switchTab('portalAnnouncements',this)">Announcements</button><button class="btn secondary" onclick="logout()">Logout</button></div></div>
+  <div class="dashbody"><div id="dashContent"></div></div>
+</div>
+
+<div class="modal" id="registerModal"><div class="modalbox"><button class="close" onclick="closeModal('registerModal')">×</button><h2>Student Registration</h2><p class="muted">Complete your details. Your account will be saved before payment.</p><div id="regMsg"></div>
+<form id="registerForm"><label>Full name *</label><input id="name" required><div class="row"><div><label>Date of birth *</label><input id="dob" type="date" required></div><div><label>Profession / Status *</label><select id="profession" required><option value="">Select</option><option>Student</option><option>Engineer</option><option>Teacher</option><option>Lecturer</option><option>Administrator</option><option>Entrepreneur</option><option>Accountant</option><option>Lawyer</option><option>Doctor</option><option>Nurse</option><option>Technician</option><option>Manager</option><option>Public Servant</option><option>Researcher</option><option>Other</option></select></div></div><label>Email *</label><input id="email" type="email" required><label>Phone number *</label><input id="phone" required placeholder="e.g. 0244000000"><label>Term *</label><select id="term" required><option>October–December</option><option disabled>January–March — Coming Soon</option><option disabled>June–August — Coming Soon</option></select><div class="notice"><strong>Registration fee: GHS 300.</strong><br>You will be taken to the payment step after your account is created.</div><button class="btn" id="regBtn" type="submit">Create My Account</button> <button class="btn secondary" type="button" onclick="closeModal('registerModal')">Cancel</button></form></div></div>
+
+<div class="modal" id="paymentModal"><div class="modalbox"><button class="close" onclick="closeModal('paymentModal')">×</button><h2>Complete Registration Payment</h2><div id="paymentMsg" class="notice"></div><p>Registration fee: <strong>GHS 300</strong></p><button class="btn success" id="payBtn" onclick="openPayment()">Pay GHS 300 with Paystack</button><button class="btn secondary" onclick="closeModal('paymentModal')">I'll Pay Later</button><p class="muted" style="font-size:12px">The Paystack button will open your live payment page once its URL has been added in Code.gs.</p></div></div>
+
+<div class="modal" id="loginModal"><div class="modalbox"><button class="close" onclick="closeModal('loginModal')">×</button><h2>Login</h2><div id="loginMsg"></div><label>Username</label><input id="loginUser"><label>Password</label><input id="loginPass" type="password"><br><br><button class="btn" onclick="doLogin()">Login</button> <button class="btn secondary" onclick="closeModal('loginModal')">Cancel</button></div></div>
+
+<div class="modal" id="programmeModal"><div class="modalbox"><button class="close" onclick="closeModal('programmeModal')">×</button><h2>Programme Details</h2><p><strong>Duration:</strong> 4 weeks</p><p><strong>Modules:</strong> 12</p><p><strong>Core outcome:</strong> Internal stability, self-discipline and responsible daily conduct.</p><p><strong>Assessment:</strong> Evidence, reflection, peer evaluation and module activities.</p><button class="btn success" onclick="closeModal('programmeModal');openModal('registerModal')">Register for the Programme</button></div></div>
+<div class="modal" id="moduleModal"><div class="modalbox"><button class="close" onclick="closeModal('moduleModal')">×</button><div id="moduleDetails"></div></div></div>
+
+<script>
+const MODULES=[
+ ['Self Awareness and Identity Clarity','Identity, self-awareness, personal constitution and clarity of values.'],
+ ['Emotional Intelligence (EQ)','Emotional awareness, regulation, empathy and practical incident reflection.'],
+ ['Ethical Reasoning and Values','Ethical decision-making, values, consequences and responsible choices.'],
+ ['Goal Setting and Direction','SMART goals, direction-setting and practical goal tracking.'],
+ ['Personal Productivity Systems','Time management, prioritisation, routines and evidence-based productivity.'],
+ ['Foundational Financial Literacy','Personal finance, budgeting, financial records and responsible money habits.'],
+ ['Digital Responsibility','Digital discipline, responsible technology use and the Digital Fast Log.'],
+ ['Resilience and Mental Stability','Resilience, reframing challenges and maintaining constructive daily habits.'],
+ ['Civic Engagement and National Responsibility','Responsible citizenship, civic participation and national responsibility.'],
+ ['Interpersonal Leadership and Conflict Resolution','Communication, leadership, conflict resolution and responsible relationships.'],
+ ['Radical Honesty and Accountability (Anti Corruption)','Integrity, honesty, accountability and anti-corruption practice.'],
+ ['Excellence, Order and Property Care','Order, standards, care of property and continuous improvement.']
+];
+let currentStudentId=null,currentRegistration=null;
+const paymentUrl=<?!= JSON.stringify(paymentUrl) ?>;
+function renderModules(){document.getElementById('moduleGrid').innerHTML=MODULES.map((m,i)=>`<div class="module"><div class="num">MODULE ${String(i+1).padStart(2,'0')}</div><h3>${escapeHtml(m[0])}</h3><p class="muted">${escapeHtml(m[1])}</p><button class="btn secondary" onclick="showModule(${i})">View Module</button></div>`).join('')}
+renderModules();
+function openModal(id){document.getElementById(id).classList.add('open')};function closeModal(id){document.getElementById(id).classList.remove('open')}
+function msg(id,text,type='notice'){document.getElementById(id).innerHTML=`<div class="${type}">${escapeHtml(text)}</div>`}
+function showModule(i){const m=MODULES[i];document.getElementById('moduleDetails').innerHTML=`<div class="eyebrow">MODULE ${String(i+1).padStart(2,'0')}</div><h2>${escapeHtml(m[0])}</h2><p>${escapeHtml(m[1])}</p><div class="notice">Learning materials, activities and evidence requirements for this module will be available inside the student portal after enrolment.</div><button class="btn success" onclick="closeModal('moduleModal');openModal('registerModal')">Register to Access</button>`;openModal('moduleModal')}
+
+document.getElementById('registerForm').addEventListener('submit',function(e){e.preventDefault();const btn=document.getElementById('regBtn');btn.disabled=true;btn.textContent='Creating account...';msg('regMsg','Please wait...');
+  if(typeof google==='undefined'||!google.script){btn.disabled=false;btn.textContent='Create My Account';msg('regMsg','This page is not connected to Google Apps Script. Deploy it as a Google Apps Script Web App, then open the Web App URL.','error');return;}
+  google.script.run.withSuccessHandler(function(r){currentRegistration=r;btn.disabled=false;btn.textContent='Create My Account';closeModal('registerModal');document.getElementById('paymentMsg').innerHTML=`<div class="success">Account created successfully.<br><strong>Username:</strong> ${escapeHtml(r.username)}<br>${escapeHtml(r.message)}</div>`;openModal('paymentModal')}).withFailureHandler(function(err){btn.disabled=false;btn.textContent='Create My Account';msg('regMsg',err.message||'Registration failed. Please try again.','error')}).registerStudent({name:name.value,dob:dob.value,profession:profession.value,email:email.value,phone:phone.value,term:term.value});
+});
+function openPayment(){if(!paymentUrl||paymentUrl.indexOf('PASTE_')===0){msg('paymentMsg','Your live Paystack payment page has not been added yet. Replace PAYSTACK_PAYMENT_PAGE_URL in Code.gs with your LIVE GHS 300 Paystack URL.','error');return}window.open(paymentUrl,'_blank','noopener')}
+function doLogin(){msg('loginMsg','Signing in...');if(typeof google==='undefined'||!google.script){msg('loginMsg','Open the deployed Google Apps Script Web App URL to use Login.','error');return}google.script.run.withSuccessHandler(function(r){closeModal('loginModal');if(r.role==='student'){currentStudentId=r.studentId;showStudentDashboard()}else showInstructor(r)}).withFailureHandler(function(err){msg('loginMsg',err.message||'Login failed.','error')}).login(document.getElementById('loginUser').value,document.getElementById('loginPass').value)}
+function showStudentDashboard(){google.script.run.withSuccessHandler(function(data){document.getElementById('public').style.display='none';document.getElementById('dashboard').style.display='block';renderStudentPortal(data)}).withFailureHandler(err=>alert(err.message)).getStudentDashboard(currentStudentId)}
+function renderStudentPortal(data){const s=data.student;document.getElementById('dashContent').innerHTML=`<div id="portalHome" class="tab active"><h1>Welcome, ${escapeHtml(s.name)}</h1><div class="stats"><div class="stat"><span class="muted">Registration</span><strong>${s.paid?'Paid':'Pending'}</strong></div><div class="stat"><span class="muted">Modules</span><strong>${data.modules.length}</strong></div><div class="stat"><span class="muted">Cohort</span><strong>${escapeHtml(s.term)}</strong></div></div><br><div class="card"><h2>Getting Started</h2><p>Use the portal buttons above to open Modules, Assignments and Announcements.</p></div></div><div id="portalModules" class="tab"><h1>Your Modules</h1><div class="grid">${data.modules.map((m,i)=>`<div class="module"><div class="num">MODULE ${String(i+1).padStart(2,'0')}</div><h3>${escapeHtml(m.title)}</h3><p>${escapeHtml(m.description||'Learning materials and activities will appear here.')}</p>${m.resourceUrl?`<a class="btn secondary" href="${escapeAttr(m.resourceUrl)}" target="_blank">Open Resource</a>`:'<span class="muted">Resource not uploaded yet.</span>'}</div>`).join('')}</div></div><div id="portalAssignments" class="tab"><h1>Assignments</h1><div id="assignmentList" class="card"><p class="muted">Assignments will appear here as the instructor publishes them.</p></div></div><div id="portalAnnouncements" class="tab"><h1>Announcements</h1><div class="card">${data.announcements.length?data.announcements.map(a=>`<div class="notice"><strong>${escapeHtml(a.title)}</strong><br>${escapeHtml(a.message)}</div>`).join(''):'<p class="muted">No announcements yet.</p>'}</div></div>`}
+function switchTab(id,button){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.getElementById(id)?.classList.add('active');document.querySelectorAll('.dashnav button').forEach(x=>x.classList.remove('active'));if(button)button.classList.add('active')}
+function showInstructor(r){document.getElementById('public').style.display='none';document.getElementById('dashboard').style.display='block';document.getElementById('dashContent').innerHTML=`<div class="card"><h1>Instructor Dashboard</h1><p>Signed in as <strong>${escapeHtml(r.name)}</strong>.</p><div class="two"><div><h3>Post Announcement</h3><input id="annTitle" placeholder="Title"><br><br><textarea id="annMsg" placeholder="Message"></textarea><br><br><button class="btn" onclick="postAnnouncement()">Publish Announcement</button></div><div><h3>Create Assignment</h3><input id="asTitle" placeholder="Assignment title"><br><br><textarea id="asInstr" placeholder="Instructions"></textarea><br><br><button class="btn" onclick="createAssignment()">Create Assignment</button></div></div></div>`}
+function postAnnouncement(){google.script.run.withSuccessHandler(()=>alert('Announcement published.')).withFailureHandler(e=>alert(e.message)).createAnnouncement(document.getElementById('annTitle').value,document.getElementById('annMsg').value)}
+function createAssignment(){google.script.run.withSuccessHandler(()=>alert('Assignment created.')).withFailureHandler(e=>alert(e.message)).createAssignment('',document.getElementById('asTitle').value,document.getElementById('asInstr').value,'')}
+function logout(){location.reload()}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))};function escapeAttr(s){return escapeHtml(s)}
+window.addEventListener('click',e=>{if(e.target.classList.contains('modal'))e.target.classList.remove('open')});
+</script>
+</body></html>
